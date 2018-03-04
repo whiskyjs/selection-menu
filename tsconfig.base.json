@@ -1,0 +1,48 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "alwaysStrict": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "es2017",
+            "dom"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "outDir": "dist",
+        "preserveConstEnums": true,
+        "pretty": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "target": "es5",
+        "baseUrl": "./app",
+        "paths": {
+            "@common/*": [
+                "common/scripts/*"
+            ],
+            "@inject/*": [
+                "inject/scripts/*"
+            ],
+            "@background/*": [
+                "background/*"
+            ]
+        },
+        "typeRoots": [
+            "./node_modules/@types"
+        ]
+    },
+    "files": [
+        "app/inject/scripts/index.ts",
+        "app/background/index.ts"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useCache": true
+    }
+}

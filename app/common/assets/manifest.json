@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_manifest_name__",
+  "description": "__MSG_manifest_description__",
+  "version": "0.1.0",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "scripts/commons.js",
+        "scripts/inject.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "scripts/commons.js",
+      "scripts/background.js",
+      "scripts/hot-reload.js"
+    ]
+  },
+  "web_accessible_resources": [
+    "styles/inject.css"
+  ],
+  "permissions": [
+    "<all_urls>",
+    "tabs"
+  ],
+  "default_locale": "en"
+}

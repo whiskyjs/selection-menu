@@ -1,0 +1,8 @@
+.vscode
+.idea
+.sublime-project
+.sublime-workspace
+/.awcache
+/.hscache
+/node_modules
+key.pem

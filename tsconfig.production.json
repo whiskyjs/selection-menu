@@ -1,0 +1,8 @@
+{
+    "extends": "./tsconfig.base",
+    "compilerOptions": {
+        "isolatedModules": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
+    }
+}
