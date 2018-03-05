@@ -4,13 +4,14 @@ import {SelectionMenu} from "@inject/components";
 (() => {
     let mouseX: number;
     let mouseY: number;
+    let leftClick: boolean = false;
     let selectionMenu: SelectionMenu;
 
     const showMenu = debounce((_e: MouseEvent) => {
         const selection = window.getSelection();
         const text = selection.toString().trim();
 
-        if (text && (text.length > 1)) {
+        if (text && (text.length > 1) && !leftClick) {
             selectionMenu.show(mouseX, mouseY, text);
         }
     }, 200);
@@ -19,13 +20,21 @@ import {SelectionMenu} from "@inject/components";
         selectionMenu = new SelectionMenu();
         selectionMenu.attach();
 
-        document.addEventListener("mousedown", (_e) => {
+        document.addEventListener("mousedown", (e) => {
+            if (e.button === 0) {
+                leftClick = true;
+            }
+
             selectionMenu.hide();
         });
 
         document.addEventListener("mouseup", (e) => {
             if (e.button === 0) {
-                showMenu(e);
+                leftClick = false;
+
+                if (!selectionMenu.visible) {
+                    showMenu(e);
+                }
             }
         });
 

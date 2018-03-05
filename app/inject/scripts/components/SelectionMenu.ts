@@ -39,7 +39,7 @@ export class SelectionMenu {
      * @param y
      * @param text Currently selected text
      */
-    public async show(x: number, y: number, text: string) {
+    public show(x: number, y: number, text: string) {
         this.fillWithActions(text);
 
         let left: number;
@@ -64,6 +64,10 @@ export class SelectionMenu {
         this.position(left, top);
 
         this.container.classList.add("container--visible");
+    }
+
+    public get visible() {
+        return this.container.classList.contains("container--visible");
     }
 
     /**
@@ -156,8 +160,9 @@ export class SelectionMenu {
      */
     protected createSeparator(): HTMLDivElement {
         const separatorElement = document.createElement("div");
-        separatorElement.classList.add("container__separator");
         const separatorInnerElement = document.createElement("div");
+
+        separatorElement.classList.add("container__separator");
         separatorInnerElement.classList.add("container__separator-inner");
         separatorElement.appendChild(separatorInnerElement);
 

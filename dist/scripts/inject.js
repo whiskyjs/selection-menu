@@ -47,23 +47,30 @@ var components_1 = __webpack_require__(4);
 (function () {
     var mouseX;
     var mouseY;
+    var leftClick = false;
     var selectionMenu;
     var showMenu = lib_1.debounce(function (_e) {
         var selection = window.getSelection();
         var text = selection.toString().trim();
-        if (text && text.length > 1) {
+        if (text && text.length > 1 && !leftClick) {
             selectionMenu.show(mouseX, mouseY, text);
         }
     }, 200);
     document.addEventListener("DOMContentLoaded", function () {
         selectionMenu = new components_1.SelectionMenu();
         selectionMenu.attach();
-        document.addEventListener("mousedown", function (_e) {
+        document.addEventListener("mousedown", function (e) {
+            if (e.button === 0) {
+                leftClick = true;
+            }
             selectionMenu.hide();
         });
         document.addEventListener("mouseup", function (e) {
             if (e.button === 0) {
-                showMenu(e);
+                leftClick = false;
+                if (!selectionMenu.visible) {
+                    showMenu(e);
+                }
             }
         });
         document.addEventListener("mousemove", function (e) {
@@ -283,30 +290,33 @@ var SelectionMenu = /** @class */function () {
      * @param text Currently selected text
      */
     SelectionMenu.prototype.show = function (x, y, text) {
-        return __awaiter(this, void 0, void 0, function () {
-            var left, top;
-            return __generator(this, function (_a) {
-                this.fillWithActions(text);
-                if (y < this.container.offsetHeight + SelectionMenu.MARGIN_Y * 2) {
-                    top = y + SelectionMenu.MARGIN_Y;
-                } else {
-                    top = y - SelectionMenu.MARGIN_Y - this.container.offsetHeight;
-                }
-                if (x < this.container.offsetWidth / 2 + SelectionMenu.MARGIN_X) {
-                    left = x + SelectionMenu.CURSOR_WIDTH;
-                    top = y - this.container.offsetHeight / 2;
-                } else if (x + this.container.offsetWidth / 2 + SelectionMenu.MARGIN_X > window.innerWidth) {
-                    left = x - this.container.offsetWidth - SelectionMenu.MARGIN_X - SelectionMenu.CURSOR_WIDTH;
-                    top = y - this.container.offsetHeight / 2;
-                } else {
-                    left = x - this.container.offsetWidth / 2;
-                }
-                this.position(left, top);
-                this.container.classList.add("container--visible");
-                return [2 /*return*/];
-            });
-        });
+        this.fillWithActions(text);
+        var left;
+        var top;
+        if (y < this.container.offsetHeight + SelectionMenu.MARGIN_Y * 2) {
+            top = y + SelectionMenu.MARGIN_Y;
+        } else {
+            top = y - SelectionMenu.MARGIN_Y - this.container.offsetHeight;
+        }
+        if (x < this.container.offsetWidth / 2 + SelectionMenu.MARGIN_X) {
+            left = x + SelectionMenu.CURSOR_WIDTH;
+            top = y - this.container.offsetHeight / 2;
+        } else if (x + this.container.offsetWidth / 2 + SelectionMenu.MARGIN_X > window.innerWidth) {
+            left = x - this.container.offsetWidth - SelectionMenu.MARGIN_X - SelectionMenu.CURSOR_WIDTH;
+            top = y - this.container.offsetHeight / 2;
+        } else {
+            left = x - this.container.offsetWidth / 2;
+        }
+        this.position(left, top);
+        this.container.classList.add("container--visible");
     };
+    Object.defineProperty(SelectionMenu.prototype, "visible", {
+        get: function get() {
+            return this.container.classList.contains("container--visible");
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Hide the container outside viewport.
      */
@@ -421,8 +431,8 @@ var SelectionMenu = /** @class */function () {
      */
     SelectionMenu.prototype.createSeparator = function () {
         var separatorElement = document.createElement("div");
-        separatorElement.classList.add("container__separator");
         var separatorInnerElement = document.createElement("div");
+        separatorElement.classList.add("container__separator");
         separatorInnerElement.classList.add("container__separator-inner");
         separatorElement.appendChild(separatorInnerElement);
         return separatorElement;

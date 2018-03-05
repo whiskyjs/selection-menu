@@ -1,6 +1,6 @@
 {
   "name": "selection-menu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "scripts": {
     "watch": "webpack --watch",
@@ -8,7 +8,7 @@
     "build-dev": "webpack"
   },
   "config": {
-    "date": "2018.03.04",
+    "date": "2018.03.05",
     "wallets": {
       "bitCoin": "17DHreE3dqcB4EH1G8SxZ8HoHWtMr5ve3",
       "liteCoin": "LPi5chxhT2gDJjqFbDFP7VZcJBKPPk88C8"
