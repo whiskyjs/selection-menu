@@ -1,8 +1,10 @@
 import {CopyToClipboardAction} from "./copy-to-clipboard";
-import {SearchInGoogle} from "./search-in-google";
+import {OpenUrlAction} from "./open-url";
+import {SearchInGoogleAction} from "./search-in-google";
 
 export default [
-    SearchInGoogle,
+    SearchInGoogleAction,
     // tslint:disable-next-line:object-literal-sort-keys
     CopyToClipboardAction,
+    OpenUrlAction,
 ];

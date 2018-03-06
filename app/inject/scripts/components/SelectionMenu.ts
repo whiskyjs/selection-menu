@@ -39,8 +39,8 @@ export class SelectionMenu {
      * @param y
      * @param text Currently selected text
      */
-    public show(x: number, y: number, text: string) {
-        this.fillWithActions(text);
+    public show(x: number, y: number, text: string, onClose?: () => void) {
+        this.fillWithActions(text, onClose);
 
         let left: number;
         let top: number;
@@ -97,11 +97,15 @@ export class SelectionMenu {
      * The only currently supported action event is click.
      * @param text Currently selected text
      */
-    protected fillWithActions(text: string) {
+    protected fillWithActions(text: string, onClose?: () => void) {
         const separator = this.createSeparator();
 
         for (const klass of actions) {
             const action = new klass(text);
+
+            if (!action.applicable) {
+                continue;
+            }
 
             const actionElement = document.createElement("a");
             actionElement.href = "#";
@@ -120,8 +124,11 @@ export class SelectionMenu {
 
                     await action.perform();
 
-                    this.clearSelection();
                     this.hide();
+
+                    if (typeof onClose !== "undefined") {
+                        onClose();
+                    }
                 });
             }
 
@@ -146,13 +153,6 @@ export class SelectionMenu {
      */
     protected silenceEvent(e: Event) {
         e.stopPropagation();
-    }
-
-    /**
-     * Clear the selection in the document.
-     */
-    protected clearSelection() {
-        window.getSelection().removeAllRanges();
     }
 
     /**

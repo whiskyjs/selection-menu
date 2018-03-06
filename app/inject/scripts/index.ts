@@ -12,7 +12,9 @@ import {SelectionMenu} from "@inject/components";
         const text = selection.toString().trim();
 
         if (text && (text.length > 1) && !leftClick) {
-            selectionMenu.show(mouseX, mouseY, text);
+            selectionMenu.show(mouseX, mouseY, text, () => {
+                window.getSelection().removeAllRanges();
+            });
         }
     }, 200);
 

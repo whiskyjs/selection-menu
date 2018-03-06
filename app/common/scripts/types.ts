@@ -1,12 +1,13 @@
-export abstract class Action<T> {
+export abstract class Action<T>  {
     constructor(public text: string) {}
 
-    abstract get uid(): string;
+    public abstract get uid(): string;
+    public abstract get applicable(): boolean;
 
     public abstract perform(): Promise<T>;
     public abstract bind(a: HTMLAnchorElement): boolean;
 
-    protected sendMessage(payload: ActionPerformPayload, type: string = "action.perform") {
+    protected sendMessage(payload: ActionPerformPayload, type: string = "action.perform"): void {
         chrome.runtime.sendMessage({
             payload,
             type,
@@ -21,10 +22,10 @@ export interface ActionPerformMessage {
     payload: ActionPerformPayload;
 }
 
-export type ActionPerformPayload = SearchActionPerformPayload;
+export type ActionPerformPayload = OpenTabActionPerformPayload;
 
-export interface SearchActionPerformPayload {
-    kind: "search";
+export interface OpenTabActionPerformPayload {
+    kind: "open-tab";
     url: string;
 }
 

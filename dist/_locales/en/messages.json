@@ -11,5 +11,8 @@
   },
   "action_search_in_google_name": {
       "message": "Google"
+  },
+  "action_open_url_name": {
+      "message": "Open"
   }
 }

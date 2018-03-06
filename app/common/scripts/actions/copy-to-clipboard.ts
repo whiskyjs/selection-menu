@@ -1,6 +1,9 @@
 import {Action} from "../types";
 
 export class CopyToClipboardAction extends Action<void> {
+    get applicable(): boolean {
+        return true;
+    }
     get uid() {
         return "copy_to_clipboard";
     }

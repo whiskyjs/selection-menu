@@ -1,7 +1,11 @@
 import {Action} from "@common/types";
 
-export class SearchInGoogle extends Action<void> {
+export class SearchInGoogleAction extends Action<void> {
     private static pattern: string = "http://www.google.com/search?q=%term%";
+
+    get applicable() {
+        return true;
+    }
 
     get uid() {
         return "search_in_google";
@@ -13,8 +17,8 @@ export class SearchInGoogle extends Action<void> {
 
     public async perform(): Promise<void> {
         this.sendMessage({
-            kind: "search",
-            url: SearchInGoogle.pattern.replace(/%term%/gm, encodeURIComponent(this.text)),
+            kind: "open-tab",
+            url: SearchInGoogleAction.pattern.replace(/%term%/gm, encodeURIComponent(this.text)),
         });
     }
 }

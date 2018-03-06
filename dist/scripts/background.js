@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 10:
+/***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(11);
+module.exports = __webpack_require__(12);
 
 
 /***/ }),
 
-/***/ 11:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18,7 +18,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 chrome.runtime.onMessage.addListener(function (message, _sender, _response) {
     switch (message.type) {
         case "action.perform":
-            if (message.payload.kind === "search") {
+            if (message.payload.kind === "open-tab") {
                 chrome.tabs.create({
                     active: true,
                     url: message.payload.url
@@ -30,4 +30,4 @@ chrome.runtime.onMessage.addListener(function (message, _sender, _response) {
 
 /***/ })
 
-},[10]);
+},[11]);
