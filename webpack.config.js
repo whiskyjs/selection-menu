@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const base = require("./webpack.base");
 
-module.exports = merge(base, {
+module.exports = merge(base.config, {
     devtool: "source-map",
 
     module: {
@@ -38,7 +38,7 @@ module.exports = merge(base, {
                 ],
             },
             {
-                from: "common/assets/manifest.json", to: resolve(__dirname, "dist"),
+                from: `common/assets/manifest.${process.env.NODE_ENV}.json`, to: resolve(__dirname, "dist/manifest.json"),
             },
             {
                 from: resolve(__dirname, "node_modules/crx-hotreload/hot-reload.js"),

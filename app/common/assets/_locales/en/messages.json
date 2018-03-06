@@ -1,13 +1,13 @@
 {
   "manifest_name": {
-    "message": "Меню для выделенного текста"
+    "message": "Context Menu for Selected Text"
   },
   "manifest_description": {
-    "message": "При выделении текста отображает контекстное меню со списком возможных действий (в стиле Opera)."
+    "message": "Displays popup menu with available common actions when selecting text on webpage via mouse."
   },
 
   "action_copy_to_clipboard_name": {
-      "message": "Копировать"
+      "message": "Copy"
   },
   "action_search_in_google_name": {
       "message": "Google"

@@ -6,9 +6,6 @@ webpackJsonp([0],[
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Main types.
- */
 var Action = /** @class */function () {
     function Action(text) {
         this.text = text;

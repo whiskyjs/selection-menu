@@ -1,6 +1,3 @@
-/**
- * Main types.
- */
 export abstract class Action<T> {
     constructor(public text: string) {}
 
@@ -17,9 +14,6 @@ export abstract class Action<T> {
     }
 }
 
-/**
- * Type declarations for safe message passing.
- */
 export type Message = ActionPerformMessage;
 
 export interface ActionPerformMessage {
@@ -34,8 +28,4 @@ export interface SearchActionPerformPayload {
     url: string;
 }
 
-/**
- * Common types.
- */
-
-export type DebouncedFunction = (...args: any[]) => any;
+export type AnyFunction = (...args: any[]) => any;

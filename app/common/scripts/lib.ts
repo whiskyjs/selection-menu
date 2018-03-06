@@ -1,6 +1,6 @@
-import {DebouncedFunction} from "./types";
+import {AnyFunction} from "./types";
 
-export function debounce(fn: DebouncedFunction, delay: number, combine: boolean = false): DebouncedFunction {
+export function debounce(fn: AnyFunction, delay: number, combine: boolean = false): AnyFunction {
     let timeout: number | undefined;
     let args: any[] = [];
 
