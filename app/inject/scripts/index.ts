@@ -18,6 +18,8 @@ import {SelectionMenu} from "@inject/components";
         }
     }, 200);
 
+    const isTextInput = (e: Element): boolean => !!~["INPUT", "TEXTAREA"].indexOf(e.tagName);
+
     document.addEventListener("DOMContentLoaded", () => {
         selectionMenu = new SelectionMenu();
         selectionMenu.attach();
@@ -32,9 +34,11 @@ import {SelectionMenu} from "@inject/components";
 
         document.addEventListener("mouseup", (e) => {
             if (e.button === 0) {
+                const textInputActive = isTextInput(document.activeElement);
+
                 leftClick = false;
 
-                if (!selectionMenu.visible) {
+                if (!selectionMenu.visible && (!textInputActive || (textInputActive && e.ctrlKey))) {
                     showMenu(e);
                 }
             }

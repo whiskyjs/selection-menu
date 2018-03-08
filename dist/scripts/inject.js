@@ -55,6 +55,9 @@ var components_1 = __webpack_require__(4);
             });
         }
     }, 200);
+    var isTextInput = function isTextInput(e) {
+        return !!~["INPUT", "TEXTAREA"].indexOf(e.tagName);
+    };
     document.addEventListener("DOMContentLoaded", function () {
         selectionMenu = new components_1.SelectionMenu();
         selectionMenu.attach();
@@ -66,8 +69,9 @@ var components_1 = __webpack_require__(4);
         });
         document.addEventListener("mouseup", function (e) {
             if (e.button === 0) {
+                var textInputActive = isTextInput(document.activeElement);
                 leftClick = false;
-                if (!selectionMenu.visible) {
+                if (!selectionMenu.visible && (!textInputActive || textInputActive && e.ctrlKey)) {
                     showMenu(e);
                 }
             }

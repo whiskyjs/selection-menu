@@ -1,6 +1,6 @@
 {
   "name": "selection-menu",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "scripts": {
     "watch": "cross-env NODE_ENV=development webpack --watch",
@@ -8,7 +8,7 @@
     "build-dev": "cross-env NODE_ENV=development webpack"
   },
   "config": {
-    "date": "2018.03.06",
+    "date": "2018.03.08",
     "wallets": {
       "bitCoin": "17DHreE3dqcB4EH1G8SxZ8HoHWtMr5ve3",
       "liteCoin": "LPi5chxhT2gDJjqFbDFP7VZcJBKPPk88C8"
